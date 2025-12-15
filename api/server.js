@@ -3,11 +3,11 @@
  * CORS 문제를 해결하기 위한 Express 서버
  */
 
-const express = require('express');
-const cors = require('cors');
-const fetch = require('node-fetch');
-const path = require('path');
-require('dotenv').config();
+const express = require("express");
+const cors = require("cors");
+const fetch = require("node-fetch");
+const path = require("path");
+require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +18,9 @@ const NAVER_CLIENT_SECRET = process.env.NAVER_CLIENT_SECRET;
 
 // API 키 확인
 if (!NAVER_CLIENT_ID || !NAVER_CLIENT_SECRET) {
-  console.error('❌ Error: NAVER_CLIENT_ID and NAVER_CLIENT_SECRET must be set in environment variables');
+  console.error(
+    "❌ Error: NAVER_CLIENT_ID and NAVER_CLIENT_SECRET must be set in environment variables"
+  );
   process.exit(1);
 }
 
@@ -26,7 +28,7 @@ if (!NAVER_CLIENT_ID || !NAVER_CLIENT_SECRET) {
 app.use(cors());
 
 // 정적 파일 서빙 (부모 디렉토리)
-app.use(express.static(path.join(__dirname, '..')));
+app.use(express.static(path.join(__dirname, "..")));
 
 /**
  * 네이버 뉴스 API 프록시 엔드포인트
@@ -34,22 +36,24 @@ app.use(express.static(path.join(__dirname, '..')));
  * @query display - 검색 결과 개수 (기본값: 100)
  * @query sort - 정렬 방식 (sim: 정확도순, date: 최신순)
  */
-app.get('/api/news', async (req, res) => {
+app.get("/api/news", async (req, res) => {
   const query = req.query.query;
   const display = req.query.display || 100;
-  const sort = req.query.sort || 'date';
+  const sort = req.query.sort || "date";
 
   if (!query) {
-    return res.status(400).json({ error: 'Query parameter is required' });
+    return res.status(400).json({ error: "Query parameter is required" });
   }
 
   try {
-    const apiUrl = `https://openapi.naver.com/v1/search/news.json?query=${encodeURIComponent(query)}&display=${display}&sort=${sort}`;
+    const apiUrl = `https://openapi.naver.com/v1/search/news.json?query=${encodeURIComponent(
+      query
+    )}&display=${display}&sort=${sort}`;
 
     const response = await fetch(apiUrl, {
       headers: {
-        'X-Naver-Client-Id': NAVER_CLIENT_ID,
-        'X-Naver-Client-Secret': NAVER_CLIENT_SECRET,
+        "X-Naver-Client-Id": NAVER_CLIENT_ID,
+        "X-Naver-Client-Secret": NAVER_CLIENT_SECRET,
       },
     });
 
@@ -62,11 +66,13 @@ app.get('/api/news', async (req, res) => {
     const data = JSON.parse(text);
 
     // UTF-8 응답 헤더 설정
-    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.json(data);
   } catch (error) {
-    console.error('Error fetching news:', error);
-    res.status(500).json({ error: 'Failed to fetch news', message: error.message });
+    console.error("Error fetching news:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to fetch news", message: error.message });
   }
 });
 
@@ -76,22 +82,24 @@ app.get('/api/news', async (req, res) => {
  * @query display - 검색 결과 개수 (기본값: 100)
  * @query sort - 정렬 방식 (sim: 정확도순, date: 최신순)
  */
-app.get('/api/blog', async (req, res) => {
+app.get("/api/blog", async (req, res) => {
   const query = req.query.query;
   const display = req.query.display || 100;
-  const sort = req.query.sort || 'date';
+  const sort = req.query.sort || "date";
 
   if (!query) {
-    return res.status(400).json({ error: 'Query parameter is required' });
+    return res.status(400).json({ error: "Query parameter is required" });
   }
 
   try {
-    const apiUrl = `https://openapi.naver.com/v1/search/blog.json?query=${encodeURIComponent(query)}&display=${display}&sort=${sort}`;
+    const apiUrl = `https://openapi.naver.com/v1/search/blog.json?query=${encodeURIComponent(
+      query
+    )}&display=${display}&sort=${sort}`;
 
     const response = await fetch(apiUrl, {
       headers: {
-        'X-Naver-Client-Id': NAVER_CLIENT_ID,
-        'X-Naver-Client-Secret': NAVER_CLIENT_SECRET,
+        "X-Naver-Client-Id": NAVER_CLIENT_ID,
+        "X-Naver-Client-Secret": NAVER_CLIENT_SECRET,
       },
     });
 
@@ -104,11 +112,13 @@ app.get('/api/blog', async (req, res) => {
     const data = JSON.parse(text);
 
     // UTF-8 응답 헤더 설정
-    res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.json(data);
   } catch (error) {
-    console.error('Error fetching blog:', error);
-    res.status(500).json({ error: 'Failed to fetch blog', message: error.message });
+    console.error("Error fetching blog:", error);
+    res
+      .status(500)
+      .json({ error: "Failed to fetch blog", message: error.message });
   }
 });
 
