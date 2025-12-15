@@ -68,7 +68,7 @@ const VisualSettings = {
       imageFile: 'source/cup.png',
       sizeMin: 80,
       sizeMax: 200,
-      tiltAngle: 1.2 // 기울기 임계값
+      tiltAngle: 1.5 // 기울기 임계값 (더 많이 기울여야 쏟아짐)
     },
 
     // 생성 빈도
@@ -323,7 +323,7 @@ const VisualSettings = {
    * MediaPipe 손 인식 설정
    */
   handTracking: {
-    maxNumHands: 1,
+    maxNumHands: 2, // Warm Up 모드를 위해 2개 손 인식
     modelComplexity: 1,
     minDetectionConfidence: 0.5,
     minTrackingConfidence: 0.5,

@@ -624,21 +624,53 @@ function drawCampfire() {
   // 모닥불 맨 아래를 캔버스 하단에서 offsetY만큼 위로
   const campfireY = height - campfireSettings.offsetY - campfireSettings.size / 2;
 
-  // 손이 모닥불 위에 있는지 확인
+  // 두 손이 모닥불 위에 있고 손가락이 펴져 있는지 확인
   let isHandOverCampfire = false;
-  if (handResults && handResults.length > 0) {
-    const landmarks = handResults[0];
-    if (landmarks && landmarks.length > 0) {
+  if (handResults && handResults.length >= 2) {
+    // 두 손 모두 확인
+    let bothHandsValid = true;
+
+    for (let i = 0; i < 2; i++) {
+      const landmarks = handResults[i];
+      if (!landmarks || landmarks.length === 0) {
+        bothHandsValid = false;
+        break;
+      }
+
       // 손바닥 중심 (landmark 9번)
       const palmCenter = landmarks[9];
       const handX = palmCenter.x * width;
       const handY = palmCenter.y * height;
 
-      // 모닥불 영역 내에 손이 있는지 확인 (모닥불 영역을 크게)
+      // 모닥불 영역 내에 손이 있는지 확인
       const campfireRadius = campfireSettings.size / 2 + 100;
       const distance = dist(handX, handY, campfireX, campfireY);
-      isHandOverCampfire = distance < campfireRadius;
+      if (distance >= campfireRadius) {
+        bothHandsValid = false;
+        break;
+      }
+
+      // 손가락이 위로 펴져 있는지 확인
+      // 손바닥 중심(landmark 9) 기준으로 손가락 끝이 위에 있어야 함
+      const indexTip = landmarks[8];
+      const middleTip = landmarks[12];
+      const ringTip = landmarks[16];
+      const pinkyTip = landmarks[20];
+
+      // 손가락 끝이 손바닥보다 위에 있는지 확인 (y 좌표가 작을수록 위)
+      const fingersUp =
+        indexTip.y < palmCenter.y - 0.05 &&
+        middleTip.y < palmCenter.y - 0.05 &&
+        ringTip.y < palmCenter.y - 0.05 &&
+        pinkyTip.y < palmCenter.y - 0.05;
+
+      if (!fingersUp) {
+        bothHandsValid = false;
+        break;
+      }
     }
+
+    isHandOverCampfire = bothHandsValid;
   }
 
   // Generate ash particles at interval (손이 모닥불 위에 있을 때만)
