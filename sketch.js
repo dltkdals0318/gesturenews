@@ -29,7 +29,9 @@ let isNewsLoaded = false;
 // 배포 환경에서는 실제 서버 URL을 사용하고, 로컬에서는 localhost 사용
 const API_BASE_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
   ? 'http://localhost:3000'
-  : window.location.origin;
+  : (window.location.hostname.includes('github.io')
+      ? 'https://gesturenews.onrender.com'
+      : window.location.origin);
 
 // ==================== Particles ====================
 let teaParticles = [];
