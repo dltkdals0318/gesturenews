@@ -1,6 +1,37 @@
-# Gesturenews - Deployment and Naver API setup
+# Gesturenews - Interactive News with Hand Gestures
 
 이 저장소는 로컬 및 Render에 배포 가능한 Express 서버(`api/server.js`)와 정적 프론트엔드를 포함합니다. 네이버 Open API는 서버 사이드에서 프록시 요청으로 처리되어 클라이언트에 비밀키가 노출되지 않습니다.
+
+## 프로젝트 구조
+
+```
+gesturenews/
+├── api/                      # 백엔드 서버
+│   └── server.js            # Express API 서버
+├── assets/                   # 이미지 및 폰트 파일
+│   ├── bomb.png
+│   ├── campfire.png
+│   ├── cup.png
+│   └── OSSwash-Regular.woff2
+├── config/                   # 설정 파일
+│   ├── newsFilters.js       # 뉴스 필터링 설정
+│   └── visualSettings.js    # 비주얼 디자인 설정
+├── src/                      # 프론트엔드 소스 코드
+│   ├── api/
+│   │   └── newsService.js   # 뉴스 API 서비스
+│   ├── core/
+│   │   ├── gameState.js     # 게임 상태 관리
+│   │   └── sketch.js        # p5.js 메인 스케치
+│   ├── particles/
+│   │   └── Particle.js      # 파티클 시스템 (Tea, Bomb, WarmUp)
+│   ├── ui/
+│   │   └── buttonHandlers.js # UI 버튼 및 이벤트 핸들러
+│   └── utils/
+│       └── helpers.js       # 유틸리티 함수
+├── styles/                   # CSS 파일
+│   └── main.css
+└── index.html               # 메인 HTML 파일
+```
 
 ## 필수 환경변수
 

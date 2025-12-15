@@ -65,7 +65,7 @@ const VisualSettings = {
 
     // 컵 설정
     cup: {
-      imageFile: 'source/cup.png',
+      imageFile: 'assets/cup.png',
       sizeMin: 80,
       sizeMax: 200,
       tiltAngle: 1.5 // 기울기 임계값 (더 많이 기울여야 쏟아짐)
@@ -83,7 +83,7 @@ const VisualSettings = {
   bombshell: {
     // 폭탄 설정
     bomb: {
-      imageFile: 'source/bomb.png',
+      imageFile: 'assets/bomb.png',
       sizeDefault: 90,
       handSizeMin: 75,
       handSizeMax: 150,
@@ -139,7 +139,7 @@ const VisualSettings = {
   warmup: {
     // 캠프파이어 설정
     campfire: {
-      imageFile: 'source/campfire.png',
+      imageFile: 'assets/campfire.png',
       size: 320, // 480의 1/1.5 = 320
       position: {
         x: 'center', // 화면 중앙
