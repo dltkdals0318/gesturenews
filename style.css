@@ -1,0 +1,94 @@
+@font-face {
+  font-family: "OSSwash";
+  src: url("source/OSSwash-Regular.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #e8e8e8;
+  overflow: hidden;
+  font-family: "Times New Roman", Times, serif;
+  touch-action: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* 상단 컨테이너 */
+.top-section {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 1000;
+}
+
+/* 신문 헤더 스타일 */
+header {
+  text-align: center;
+  background: white;
+  padding: 12px 35px;
+  border: 3px solid black;
+  box-shadow: 0 0 0 1px black inset;
+}
+
+h1 {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 42px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: black;
+  border-bottom: 2px solid black;
+  padding-bottom: 4px;
+}
+
+.subtitle {
+  margin: 6px 0 0 0;
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #333;
+}
+
+/* 버튼 컨테이너 */
+.button-container {
+  display: flex;
+  gap: 20px;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+canvas {
+  display: block;
+  border: 3px solid black;
+  box-shadow: 0 0 0 1px black inset, 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 30px; /* 상단과의 간격 조정 */
+}
+
+video {
+  display: none !important;
+}

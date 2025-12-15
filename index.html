@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gesture News</title>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Matter.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+    <!-- MediaPipe Hands -->
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+
+    <!-- p5.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+
+    <!-- Configuration files -->
+    <script src="config/newsFilters.js"></script>
+    <script src="config/visualSettings.js"></script>
+
+    <!-- Particle system -->
+    <script src="particles/Particle.js"></script>
+
+    <!-- Main sketch -->
+    <script src="sketch.js"></script>
+  </head>
+
+  <body>
+    <div class="top-section">
+      <header>
+        <h1>Gesture News</h1>
+        <div class="subtitle">Interactive Edition</div>
+      </header>
+      <div class="button-container" id="modeButtons"></div>
+    </div>
+    <main></main>
+  </body>
+</html>

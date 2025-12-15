@@ -1,0 +1,25 @@
+{
+  "name": "spill-the-tea",
+  "version": "1.0.0",
+  "description": "Interactive news visualization with hand gestures",
+  "main": "api/server.js",
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "node api/server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^4.18.2",
+    "node-fetch": "^2.7.0"
+  },
+  "keywords": [
+    "interactive",
+    "news",
+    "visualization",
+    "hand-tracking",
+    "p5js"
+  ],
+  "author": "",
+  "license": "MIT"
+}
