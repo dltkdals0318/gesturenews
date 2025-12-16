@@ -9,9 +9,12 @@
     <link rel="stylesheet" href="styles/reset.css" />
 
     <!-- Google Fonts - Blackletter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- External CSS -->
     <link rel="stylesheet" href="styles/main.css" />
@@ -62,25 +65,46 @@
       <script>
         // 현재 날짜를 신문 형식으로 표시
         const now = new Date();
-        const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
-        const months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
-                        'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+        const days = [
+          "SUNDAY",
+          "MONDAY",
+          "TUESDAY",
+          "WEDNESDAY",
+          "THURSDAY",
+          "FRIDAY",
+          "SATURDAY",
+        ];
+        const months = [
+          "JANUARY",
+          "FEBRUARY",
+          "MARCH",
+          "APRIL",
+          "MAY",
+          "JUNE",
+          "JULY",
+          "AUGUST",
+          "SEPTEMBER",
+          "OCTOBER",
+          "NOVEMBER",
+          "DECEMBER",
+        ];
 
         const dayName = days[now.getDay()];
         const day = now.getDate();
         const monthName = months[now.getMonth()];
         const year = now.getFullYear();
 
-        document.getElementById('dateline').textContent =
-          `SEOUL, ${dayName}, ${day} ${monthName} ${year}`;
+        document.getElementById(
+          "dateline"
+        ).textContent = `SEOUL, ${dayName}, ${day} ${monthName} ${year}`;
 
         // Gesture News 제목 색상 변경 애니메이션
-        const title = document.querySelector('h1');
+        const title = document.querySelector("h1");
         const colors = [
-          'rgb(75, 255, 0)',    // Tea 색상
-          'rgb(255, 0, 191)',   // Bombshell 색상
-          'rgb(73, 69, 66)',    // Warm Up 색상
-          'rgb(0, 0, 0)'        // 검정색
+          "rgb(75, 255, 0)",
+          "rgb(73, 69, 66)",
+          "rgb(255, 0, 191)",
+          "rgb(0, 0, 0)",
         ];
         let colorIndex = 0;
 

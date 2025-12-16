@@ -49,7 +49,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  box-shadow: 7px 8px 10px black;
 }
 
 /* 상단 컨테이너 */
