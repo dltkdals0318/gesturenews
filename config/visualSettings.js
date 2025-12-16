@@ -68,7 +68,7 @@ const VisualSettings = {
       imageFile: "assets/cup.png",
       sizeMin: 80,
       sizeMax: 200,
-      tiltAngle: 1.5, // 기울기 임계값 (더 많이 기울여야 쏟아짐)
+      tiltAngle: 2,
     },
 
     // 생성 빈도
