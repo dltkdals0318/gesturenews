@@ -140,17 +140,17 @@ const VisualSettings = {
     // 캠프파이어 설정
     campfire: {
       imageFile: "assets/campfire.png",
-      size: 320, // 480의 1/1.5 = 320
+      size: 320,
       position: {
         x: "center", // 화면 중앙
         y: "bottom", // 화면 하단
       },
-      offsetY: -40, // 하단에서 40px 아래로 (60px 위로 이동)
+      offsetY: -40,
     },
 
     // 재 파티클 설정
     particle: {
-      textSize: 17,
+      textSize: 27,
       font: "Singlife", // Warm Up 모드 전용 폰트 (타자기 스타일의 모노스페이스 폰트)
       minWordLength: 2,
       maxWordLength: 10,
