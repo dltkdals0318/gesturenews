@@ -144,6 +144,9 @@ h1 {
   background-color: white;
   color: black;
   font-family: "Singlife", "Times New Roman", Times, serif;
+  font-size: 25px;
+  padding-top: 8px;
+  padding-bottom: 0px;
 }
 
 .warmup-button.active {
