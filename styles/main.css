@@ -42,8 +42,8 @@ body {
 .main-container {
   background-color: #e8e8e8;
   width: 100%;
-  max-width: 750px;
-  min-height: 100vh;
+  max-width: 650px;
+  max-height: 790px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -76,11 +76,11 @@ header {
 
 h1 {
   margin: 0;
-  font-family: "Times New Roman", Times, serif;
-  font-size: 42px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  font-family: "UnifrakturMaguntia", "Times New Roman", Times, serif;
+  font-size: 60px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  text-transform: none;
   color: black;
   border-bottom: 2px solid black;
   padding-bottom: 4px;
@@ -184,6 +184,7 @@ h1 {
 /* 리셋 버튼 */
 .reset-button {
   padding: 10px 20px;
+  margin-bottom: -20px;
   font-size: 13px;
   font-family: "Times New Roman", Times, serif;
   font-weight: 900;
@@ -217,7 +218,7 @@ canvas {
   box-shadow: 0 0 0 1px black inset, 0 4px 6px rgba(0, 0, 0, 0.1);
   background: white;
   position: absolute;
-  top: 52%;
+  top: 54%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 30px;
