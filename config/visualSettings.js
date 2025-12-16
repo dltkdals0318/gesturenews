@@ -26,14 +26,14 @@ const VisualSettings = {
 
       // 색상
       defaultColor: {
-        r: 34,
-        g: 139,
-        b: 34,
+        r: 75,
+        g: 255,
+        b: 0,
         alpha: 255,
       },
       hoverColor: {
-        r: 255,
-        g: 215,
+        r: 206,
+        g: 255,
         b: 0,
         alpha: 255,
       },
@@ -102,16 +102,16 @@ const VisualSettings = {
       font: "Kwangin", // Bombshell 모드 전용 폰트 (강렬하고 굵은 폰트)
 
       // 색상
-      color: {
+      defaultColor: {
         r: 255,
-        g: 69,
-        b: 0,
+        g: 0,
+        b: 191,
         alpha: 255,
       },
-      outlineColor: {
-        r: 255,
-        g: 100,
-        b: 0,
+      hoverColor: {
+        r: 235,
+        g: 92,
+        b: 255,
         alpha: 255,
       },
 
@@ -156,16 +156,16 @@ const VisualSettings = {
       maxWordLength: 10,
 
       // 재 색상 (갈색 톤)
-      colors: [
-        { r: 101, g: 67, b: 33 }, // 진한 갈색
-        { r: 139, g: 90, b: 43 }, // 중간 갈색
-        { r: 160, g: 82, b: 45 }, // 시에나 갈색
-        { r: 184, g: 115, b: 51 }, // 밝은 갈색
-      ],
+      defaultColor: {
+        r: 73,
+        g: 69,
+        b: 66,
+        alpha: 255,
+      },
       hoverColor: {
-        r: 255,
-        g: 140,
-        b: 0,
+        r: 91,
+        g: 89,
+        b: 87,
         alpha: 255,
       },
 

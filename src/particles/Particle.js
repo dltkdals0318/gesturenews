@@ -239,7 +239,11 @@ function displayBomb(bomb) {
       textStyle(BOLD);
       textFont(VisualSettings.bombshell.explosion.font); // Bombshell 모드 폰트 적용
 
-      fill(colors.color.r, colors.color.g, colors.color.b, 255);
+      if (p.isHovered) {
+        fill(colors.hoverColor.r, colors.hoverColor.g, colors.hoverColor.b, 255);
+      } else {
+        fill(colors.defaultColor.r, colors.defaultColor.g, colors.defaultColor.b, 255);
+      }
       noStroke();
       textSize(p.size);
       text(p.text, 0, 0);
@@ -251,15 +255,17 @@ function displayBomb(bomb) {
 function checkBombHover(bomb, mx, my) {
   if (!bomb.exploded) return false;
 
+  let anyHovered = false;
   for (let p of bomb.explosionParticles) {
     let pos = p.body.position;
     let d = dist(mx, my, pos.x, pos.y);
-    if (d < p.radius) {
+    p.isHovered = d < p.radius;
+    if (p.isHovered) {
       cursor(HAND);
-      return true;
+      anyHovered = true;
     }
   }
-  return false;
+  return anyHovered;
 }
 
 function isBombClicked(bomb, mx, my) {
@@ -311,10 +317,6 @@ class WarmUpParticle {
 
     this.size = settings.particle.textSize;
     this.alpha = 255;
-
-    // 랜덤 재 색상 선택
-    const colorOptions = settings.particle.colors;
-    this.color = colorOptions[Math.floor(Math.random() * colorOptions.length)];
 
     // 텍스트 크기에 맞는 반지름 계산
     this.radius = this.text.length * this.size * settings.particle.physics.radius;
@@ -369,14 +371,14 @@ class WarmUpParticle {
     textFont(this.settings.particle.font); // Warm Up 모드 폰트 적용
 
     let currentSize = this.size;
-    const hoverColor = this.settings.particle.hoverColor;
+    const colors = this.settings.particle;
 
     if (this.isHovered) {
-      fill(hoverColor.r, hoverColor.g, hoverColor.b, this.alpha);
+      fill(colors.hoverColor.r, colors.hoverColor.g, colors.hoverColor.b, this.alpha);
       currentSize = this.size * this.settings.particle.hover.sizeMultiplier;
       cursor(HAND);
     } else {
-      fill(this.color.r, this.color.g, this.color.b, this.alpha);
+      fill(colors.defaultColor.r, colors.defaultColor.g, colors.defaultColor.b, this.alpha);
     }
 
     textSize(currentSize);

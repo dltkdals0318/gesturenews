@@ -119,6 +119,7 @@ h1 {
 .tea-button {
   background-color: white;
   color: black;
+  font-family: "Ohmin", "Times New Roman", Times, serif;
 }
 
 .tea-button.active {
@@ -130,6 +131,7 @@ h1 {
 .bomb-button {
   background-color: white;
   color: black;
+  font-family: "Kwangin", "Times New Roman", Times, serif;
 }
 
 .bomb-button.active {
@@ -141,6 +143,7 @@ h1 {
 .warmup-button {
   background-color: white;
   color: black;
+  font-family: "Singlife", "Times New Roman", Times, serif;
 }
 
 .warmup-button.active {
@@ -199,7 +202,7 @@ canvas {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin-top: 30px; /* 상단과의 간격 조정 */
+  margin-top: 30px;
 }
 
 video {
