@@ -207,7 +207,11 @@ function displayBomb(bomb) {
 
     if (bombImage && bombImage.width > 0) {
       imageMode(CENTER);
-      image(bombImage, 0, 0, bomb.size, bomb.size);
+      // Bomb 이미지 비율: 1258 x 1226 (약 1.03:1)
+      const bombAspectRatio = 1258 / 1226;
+      const bombWidth = bomb.size * bombAspectRatio;
+      const bombHeight = bomb.size;
+      image(bombImage, 0, 0, bombWidth, bombHeight);
     } else {
       fill(50, 50, 50);
       stroke(0);

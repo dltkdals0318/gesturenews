@@ -74,17 +74,29 @@ function preload() {
 async function loadNewsData() {
   const teaQueries = NewsFilters.getRandomQueries("tea", 3);
   const teaConfig = NewsFilters.tea;
-  teaNewsArticles = await NewsService.loadNewsForMode("tea", teaQueries, teaConfig);
+  teaNewsArticles = await NewsService.loadNewsForMode(
+    "tea",
+    teaQueries,
+    teaConfig
+  );
   GameState.checkNewsLoadComplete();
 
   const bombQueries = NewsFilters.getRandomQueries("bombshell", 3);
   const bombConfig = NewsFilters.bombshell;
-  bombshellNewsArticles = await NewsService.loadNewsForMode("bombshell", bombQueries, bombConfig);
+  bombshellNewsArticles = await NewsService.loadNewsForMode(
+    "bombshell",
+    bombQueries,
+    bombConfig
+  );
   GameState.checkNewsLoadComplete();
 
   const warmupQueries = NewsFilters.getRandomQueries("warmup", 3);
   const warmupConfig = NewsFilters.warmup;
-  warmupNewsArticles = await NewsService.loadNewsForMode("warmup", warmupQueries, warmupConfig);
+  warmupNewsArticles = await NewsService.loadNewsForMode(
+    "warmup",
+    warmupQueries,
+    warmupConfig
+  );
   GameState.checkNewsLoadComplete();
 }
 
@@ -101,10 +113,22 @@ function setup() {
   const offset = wallThickness / 2 + VisualSettings.physics.walls.offset;
 
   Composite.add(engine.world, [
-    Bodies.rectangle(-offset, height / 2, wallThickness, height * 2, { isStatic: true, label: "wall" }),
-    Bodies.rectangle(width + offset, height / 2, wallThickness, height * 2, { isStatic: true, label: "wall" }),
-    Bodies.rectangle(width / 2, -offset, width * 2, wallThickness, { isStatic: true, label: "wall" }),
-    Bodies.rectangle(width / 2, height + offset, width * 2, wallThickness, { isStatic: true, label: "wall" }),
+    Bodies.rectangle(-offset, height / 2, wallThickness, height * 2, {
+      isStatic: true,
+      label: "wall",
+    }),
+    Bodies.rectangle(width + offset, height / 2, wallThickness, height * 2, {
+      isStatic: true,
+      label: "wall",
+    }),
+    Bodies.rectangle(width / 2, -offset, width * 2, wallThickness, {
+      isStatic: true,
+      label: "wall",
+    }),
+    Bodies.rectangle(width / 2, height + offset, width * 2, wallThickness, {
+      isStatic: true,
+      label: "wall",
+    }),
   ]);
 
   const videoSize = VisualSettings.handTracking.videoSize;
@@ -113,7 +137,8 @@ function setup() {
   video.hide();
 
   hands = new Hands({
-    locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+    locateFile: (file) =>
+      `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
   });
 
   const handConfig = VisualSettings.handTracking;
@@ -212,7 +237,8 @@ function drawHandAndCup() {
     let midY = (y4 + y8) / 2;
 
     let angle;
-    let isRightHand = handedness && handedness[0] && handedness[0].label === "Left";
+    let isRightHand =
+      handedness && handedness[0] && handedness[0].label === "Left";
 
     if (isRightHand) {
       angle = atan2(y4 - y8, x4 - x8);
@@ -221,15 +247,30 @@ function drawHandAndCup() {
     }
 
     const cupSettings = VisualSettings.tea.cup;
-    let cupSize = map(fingerDistance, 20, 150, cupSettings.sizeMin, cupSettings.sizeMax);
+    let cupSize = map(
+      fingerDistance,
+      20,
+      150,
+      cupSettings.sizeMin,
+      cupSettings.sizeMax
+    );
     cupSize = constrain(cupSize, cupSettings.sizeMin, cupSettings.sizeMax);
 
     if (currentMode === "tea") {
       if (abs(angle) > cupSettings.tiltAngle && isNewsLoaded) {
         if (frameCount % VisualSettings.tea.generation.frameInterval === 0) {
-          let randomNews = newsArticles[Math.floor(Math.random() * newsArticles.length)];
+          let randomNews =
+            newsArticles[Math.floor(Math.random() * newsArticles.length)];
           let normalX = width - midX;
-          teaParticles.push(new TeaParticle(normalX, midY, angle, randomNews, VisualSettings.tea));
+          teaParticles.push(
+            new TeaParticle(
+              normalX,
+              midY,
+              angle,
+              randomNews,
+              VisualSettings.tea
+            )
+          );
         }
       }
       drawCup(midX, midY, cupSize, angle);
@@ -239,7 +280,8 @@ function drawHandAndCup() {
       }
 
       if (handBomb === null && bombCooldown === 0 && isNewsLoaded) {
-        let randomNews = newsArticles[Math.floor(Math.random() * newsArticles.length)];
+        let randomNews =
+          newsArticles[Math.floor(Math.random() * newsArticles.length)];
         handBomb = {
           newsData: randomNews,
           createdAt: frameCount,
@@ -265,7 +307,8 @@ function drawHandAndCup() {
 function drawCampfire() {
   const campfireSettings = VisualSettings.warmup.campfire;
   const campfireX = width / 2;
-  const campfireY = height - campfireSettings.offsetY - campfireSettings.size / 2;
+  const campfireY =
+    height - campfireSettings.offsetY - campfireSettings.size / 2;
 
   let isHandOverCampfire = false;
   if (handResults && handResults.length >= 2) {
@@ -309,8 +352,13 @@ function drawCampfire() {
     isHandOverCampfire = bothHandsValid;
   }
 
-  if (isHandOverCampfire && frameCount % VisualSettings.warmup.generation.frameInterval === 0 && isNewsLoaded) {
-    let randomNews = newsArticles[Math.floor(Math.random() * newsArticles.length)];
+  if (
+    isHandOverCampfire &&
+    frameCount % VisualSettings.warmup.generation.frameInterval === 0 &&
+    isNewsLoaded
+  ) {
+    let randomNews =
+      newsArticles[Math.floor(Math.random() * newsArticles.length)];
     warmupParticles.push(
       new WarmUpParticle(
         campfireX,
@@ -324,7 +372,13 @@ function drawCampfire() {
   if (campfireImage && campfireImage.width > 0) {
     push();
     imageMode(CENTER);
-    image(campfireImage, campfireX, campfireY, campfireSettings.size, campfireSettings.size);
+    image(
+      campfireImage,
+      campfireX,
+      campfireY,
+      campfireSettings.size,
+      campfireSettings.size
+    );
     pop();
   } else {
     push();
@@ -351,7 +405,11 @@ function drawCup(x, y, size, rotationAngle) {
 
   if (cupImage && cupImage.width > 0) {
     imageMode(CENTER);
-    image(cupImage, 0, 0, size, size);
+    // Cup 이미지 비율: 1270 x 605 (약 2.1:1)
+    const cupAspectRatio = 1270 / 605;
+    const cupWidth = size * cupAspectRatio;
+    const cupHeight = size;
+    image(cupImage, 0, 0, cupWidth, cupHeight);
   } else {
     let scale = size / 50;
     fill(255, 255, 255, 200);
@@ -380,12 +438,28 @@ function drawBomb(x, y, size) {
   translate(x, y);
 
   const bombSettings = VisualSettings.bombshell.bomb;
-  let bombSize = map(size, VisualSettings.tea.cup.sizeMin, VisualSettings.tea.cup.sizeMax, bombSettings.handSizeMin, bombSettings.handSizeMax);
-  bombSize = constrain(bombSize, bombSettings.handSizeMin, bombSettings.handSizeMax);
+  let bombSize = map(
+    size,
+    VisualSettings.tea.cup.sizeMin,
+    VisualSettings.tea.cup.sizeMax,
+    bombSettings.handSizeMin,
+    bombSettings.handSizeMax
+  );
+  bombSize = constrain(
+    bombSize,
+    bombSettings.handSizeMin,
+    bombSettings.handSizeMax
+  );
 
   if (bombImage && bombImage.width > 0) {
     imageMode(CENTER);
-    image(bombImage, 0, 0, bombSize, bombSize);
+    // Bomb 이미지 비율: 1258 x 1226 (약 1.03:1)
+    const bombAspectRatio = 1258 / 1226;
+    const bombWidth = bombSize * bombAspectRatio;
+    const bombHeight = bombSize;
+    // 좌우 반전하여 손에 있을 때와 떨어질 때 방향 일치
+    scale(-1, 1);
+    image(bombImage, 0, 0, bombWidth, bombHeight);
   } else {
     fill(50, 50, 50);
     stroke(0);
