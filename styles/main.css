@@ -22,7 +22,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #e8e8e8;
+  background-color: #2a2a2a;
   overflow: hidden;
   font-family: "Times New Roman", Times, serif;
   touch-action: none;
@@ -31,6 +31,20 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+}
+
+/* 메인 컨테이너 */
+.main-container {
+  background-color: #e8e8e8;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 }
 
 /* 상단 컨테이너 */
@@ -143,6 +157,8 @@ h1 {
   transition: all 0.2s ease;
   background-color: white;
   color: black;
+  position: fixed;
+  transform: translateX(-50%);
 }
 
 .reset-button:hover {

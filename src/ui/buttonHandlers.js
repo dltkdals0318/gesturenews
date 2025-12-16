@@ -31,7 +31,10 @@ const UIHandlers = {
    */
   createResetButton() {
     resetButton = createButton('RESET');
-    resetButton.parent('modeButtons');
+    resetButton.position(
+      windowWidth / 2 - 30,
+      windowHeight / 2 + 310
+    );
     resetButton.class('reset-button');
     resetButton.mousePressed(GameState.resetAll);
   },
