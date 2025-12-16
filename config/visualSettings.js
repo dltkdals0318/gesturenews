@@ -8,7 +8,7 @@ const VisualSettings = {
    * 캔버스 설정
    */
   canvas: {
-    width: 640,
+    width: 585,
     height: 480,
     backgroundColor: "#e8e8e8", // 신문 스타일 회색 배경
   },
@@ -328,7 +328,7 @@ const VisualSettings = {
     minDetectionConfidence: 0.5,
     minTrackingConfidence: 0.5,
     videoSize: {
-      width: 640,
+      width: 585,
       height: 480,
     },
   },

@@ -50,10 +50,40 @@
       <div class="top-section">
         <header>
           <h1>Gesture News</h1>
-          <div class="subtitle">Interactive Edition</div>
+          <div class="subtitle" id="dateline"></div>
         </header>
         <div class="button-container" id="modeButtons"></div>
       </div>
+      <script>
+        // 현재 날짜를 신문 형식으로 표시
+        const now = new Date();
+        const days = ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'];
+        const months = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE',
+                        'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER', 'NOVEMBER', 'DECEMBER'];
+
+        const dayName = days[now.getDay()];
+        const day = now.getDate();
+        const monthName = months[now.getMonth()];
+        const year = now.getFullYear();
+
+        document.getElementById('dateline').textContent =
+          `SEOUL, ${dayName}, ${day} ${monthName} ${year}`;
+
+        // Gesture News 제목 색상 변경 애니메이션
+        const title = document.querySelector('h1');
+        const colors = [
+          'rgb(75, 255, 0)',    // Tea 색상
+          'rgb(255, 0, 191)',   // Bombshell 색상
+          'rgb(73, 69, 66)',    // Warm Up 색상
+          'rgb(0, 0, 0)'        // 검정색
+        ];
+        let colorIndex = 0;
+
+        setInterval(() => {
+          colorIndex = (colorIndex + 1) % colors.length;
+          title.style.color = colors[colorIndex];
+        }, 1500); // 1.5초마다 색상 변경
+      </script>
       <main></main>
       <div class="reset-container" id="resetContainer"></div>
     </div>

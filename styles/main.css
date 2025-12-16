@@ -69,7 +69,7 @@ body {
 header {
   text-align: center;
   background: white;
-  padding: 12px 35px;
+  padding: 12px 110px;
   border: 3px solid black;
   box-shadow: 0 0 0 1px black inset;
 }
@@ -88,7 +88,7 @@ h1 {
 
 .subtitle {
   margin: 6px 0 0 0;
-  font-size: 11px;
+  font-size: 12.7px;
   font-weight: bold;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -127,6 +127,11 @@ h1 {
   color: white;
 }
 
+.tea-button:hover {
+  background-color: black;
+  color: white;
+}
+
 /* Bombshell 모드 버튼 */
 .bomb-button {
   background-color: white;
@@ -135,6 +140,11 @@ h1 {
 }
 
 .bomb-button.active {
+  background-color: black;
+  color: white;
+}
+
+.bomb-button:hover {
   background-color: black;
   color: white;
 }
@@ -150,6 +160,11 @@ h1 {
 }
 
 .warmup-button.active {
+  background-color: black;
+  color: white;
+}
+
+.warmup-button:hover {
   background-color: black;
   color: white;
 }
@@ -173,7 +188,7 @@ h1 {
   font-family: "Times New Roman", Times, serif;
   font-weight: 900;
   border-radius: 0;
-  border: 2px solid black;
+  border: 3px solid black;
   cursor: pointer;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -202,7 +217,7 @@ canvas {
   box-shadow: 0 0 0 1px black inset, 0 4px 6px rgba(0, 0, 0, 0.1);
   background: white;
   position: absolute;
-  top: 50%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin-top: 30px;
