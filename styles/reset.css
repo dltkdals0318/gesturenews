@@ -1,22 +1,18 @@
-/**
+/*
  * CSS Reset
- * 브라우저 기본 스타일 초기화
  */
 
-/* Box sizing 설정 */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* 기본 margin, padding 제거 */
 * {
   margin: 0;
   padding: 0;
 }
 
-/* HTML, Body 설정 */
 html,
 body {
   height: 100%;
@@ -24,13 +20,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 리스트 스타일 제거 */
 ul,
 ol {
   list-style: none;
 }
 
-/* 이미지, 비디오 등 미디어 요소 */
 img,
 picture,
 video,
@@ -40,7 +34,6 @@ svg {
   max-width: 100%;
 }
 
-/* 폼 요소 폰트 상속 */
 input,
 button,
 textarea,
@@ -48,7 +41,6 @@ select {
   font: inherit;
 }
 
-/* 버튼 기본 스타일 제거 */
 button {
   background: none;
   border: none;
@@ -56,13 +48,11 @@ button {
   color: inherit;
 }
 
-/* 링크 기본 스타일 */
 a {
   color: inherit;
   text-decoration: none;
 }
 
-/* 텍스트 줄바꿈 개선 */
 p,
 h1,
 h2,
@@ -73,19 +63,16 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* 루트 요소 설정 */
 #root,
 #__next {
   isolation: isolate;
 }
 
-/* 테이블 기본 설정 */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* fieldset, legend 초기화 */
 fieldset {
   border: 0;
 }
@@ -94,14 +81,12 @@ legend {
   padding: 0;
 }
 
-/* abbr, acronym 초기화 */
 abbr,
 acronym {
   border: 0;
   font-variant: normal;
 }
 
-/* 인용 부호 제거 */
 blockquote,
 q {
   quotes: none;
@@ -111,6 +96,6 @@ blockquote::before,
 blockquote::after,
 q::before,
 q::after {
-  content: '';
+  content: "";
   content: none;
 }
