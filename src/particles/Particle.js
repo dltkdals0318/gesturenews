@@ -77,6 +77,7 @@ class TeaParticle {
 
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
+    textFont(this.settings.particle.font); // 모드별 폰트 적용
 
     let currentSize = this.size;
     const colors = this.settings.particle;
@@ -236,6 +237,7 @@ function displayBomb(bomb) {
 
       textAlign(CENTER, CENTER);
       textStyle(BOLD);
+      textFont(VisualSettings.bombshell.explosion.font); // Bombshell 모드 폰트 적용
 
       fill(colors.color.r, colors.color.g, colors.color.b, 255);
       noStroke();
@@ -364,6 +366,7 @@ class WarmUpParticle {
 
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
+    textFont(this.settings.particle.font); // Warm Up 모드 폰트 적용
 
     let currentSize = this.size;
     const hoverColor = this.settings.particle.hoverColor;

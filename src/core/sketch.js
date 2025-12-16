@@ -91,7 +91,7 @@ async function loadNewsData() {
 // Setup
 function setup() {
   createCanvas(VisualSettings.canvas.width, VisualSettings.canvas.height);
-  textFont(VisualSettings.tea.particle.font);
+  // 각 모드별로 다른 폰트를 사용하므로 기본 폰트 설정 제거
 
   engine = Engine.create();
   engine.gravity.x = VisualSettings.physics.gravity.x;

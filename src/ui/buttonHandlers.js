@@ -7,31 +7,22 @@ const UIHandlers = {
    * 모드 버튼들 생성
    */
   createModeButtons() {
-    const teaBtn = VisualSettings.ui.teaButton;
-    teaModeButton = createButton(teaBtn.text);
+    // Tea 버튼
+    teaModeButton = createButton('SPILL THE TEA');
     teaModeButton.parent('modeButtons');
-    Utils.applyButtonStyle(teaModeButton, teaBtn.style);
-    teaModeButton.style("background-color", teaBtn.colors.active);
-    teaModeButton.style("color", teaBtn.colors.text);
-    teaModeButton.style("opacity", teaBtn.colors.activeOpacity);
+    teaModeButton.class('mode-button tea-button active');
     teaModeButton.mousePressed(() => this.switchMode("tea"));
 
-    const bombBtn = VisualSettings.ui.bombButton;
-    bombModeButton = createButton(bombBtn.text);
+    // Bombshell 버튼
+    bombModeButton = createButton('DROP A BOMBSHELL');
     bombModeButton.parent('modeButtons');
-    Utils.applyButtonStyle(bombModeButton, bombBtn.style);
-    bombModeButton.style("background-color", bombBtn.colors.inactive);
-    bombModeButton.style("color", bombBtn.colors.textInactive);
-    bombModeButton.style("opacity", bombBtn.colors.inactiveOpacity);
+    bombModeButton.class('mode-button bomb-button');
     bombModeButton.mousePressed(() => this.switchMode("bombshell"));
 
-    const warmupBtn = VisualSettings.ui.warmupButton;
-    warmupModeButton = createButton(warmupBtn.text);
+    // Warm Up 버튼
+    warmupModeButton = createButton('WARM UP');
     warmupModeButton.parent('modeButtons');
-    Utils.applyButtonStyle(warmupModeButton, warmupBtn.style);
-    warmupModeButton.style("background-color", warmupBtn.colors.inactive);
-    warmupModeButton.style("color", warmupBtn.colors.textInactive);
-    warmupModeButton.style("opacity", warmupBtn.colors.inactiveOpacity);
+    warmupModeButton.class('mode-button warmup-button');
     warmupModeButton.mousePressed(() => this.switchMode("warmup"));
   },
 
@@ -39,25 +30,13 @@ const UIHandlers = {
    * 리셋 버튼 생성
    */
   createResetButton() {
-    const resetBtn = VisualSettings.ui.resetButton;
-    resetButton = createButton(resetBtn.text);
+    resetButton = createButton('RESET');
     resetButton.position(
-      windowWidth / 2 + resetBtn.position.x,
-      windowHeight / 2 + resetBtn.position.y
+      windowWidth / 2 - 30,
+      windowHeight / 2 + 310
     );
-    Utils.applyButtonStyle(resetButton, resetBtn.style);
-    resetButton.style("background-color", resetBtn.colors.default);
-    resetButton.style("color", resetBtn.colors.text);
+    resetButton.class('reset-button');
     resetButton.mousePressed(GameState.resetAll);
-
-    resetButton.mouseOver(() => {
-      resetButton.style("background-color", resetBtn.colors.hover);
-      resetButton.style("color", resetBtn.colors.textHover);
-    });
-    resetButton.mouseOut(() => {
-      resetButton.style("background-color", resetBtn.colors.default);
-      resetButton.style("color", resetBtn.colors.text);
-    });
   },
 
   /**
@@ -66,53 +45,27 @@ const UIHandlers = {
   switchMode(mode) {
     currentMode = mode;
 
-    const teaBtn = VisualSettings.ui.teaButton;
-    const bombBtn = VisualSettings.ui.bombButton;
-    const warmupBtn = VisualSettings.ui.warmupButton;
+    // 모든 버튼에서 active 클래스 제거
+    teaModeButton.removeClass('active');
+    bombModeButton.removeClass('active');
+    warmupModeButton.removeClass('active');
 
     if (mode === "tea") {
-      teaModeButton.style("background-color", teaBtn.colors.active);
-      teaModeButton.style("color", teaBtn.colors.text);
-      teaModeButton.style("opacity", teaBtn.colors.activeOpacity);
-      bombModeButton.style("background-color", bombBtn.colors.inactive);
-      bombModeButton.style("color", bombBtn.colors.textInactive);
-      bombModeButton.style("opacity", bombBtn.colors.inactiveOpacity);
-      warmupModeButton.style("background-color", warmupBtn.colors.inactive);
-      warmupModeButton.style("color", warmupBtn.colors.textInactive);
-      warmupModeButton.style("opacity", warmupBtn.colors.inactiveOpacity);
-
+      teaModeButton.addClass('active');
       newsArticles = teaNewsArticles;
       engine.gravity.x = VisualSettings.physics.gravity.x;
       engine.gravity.y = VisualSettings.physics.gravity.y;
 
       console.log(`Switched to Tea mode: ${newsArticles.length} celebrity articles`);
     } else if (mode === "bombshell") {
-      teaModeButton.style("background-color", teaBtn.colors.inactive);
-      teaModeButton.style("color", teaBtn.colors.textInactive);
-      teaModeButton.style("opacity", teaBtn.colors.inactiveOpacity);
-      bombModeButton.style("background-color", bombBtn.colors.active);
-      bombModeButton.style("color", bombBtn.colors.text);
-      bombModeButton.style("opacity", bombBtn.colors.activeOpacity);
-      warmupModeButton.style("background-color", warmupBtn.colors.inactive);
-      warmupModeButton.style("color", warmupBtn.colors.textInactive);
-      warmupModeButton.style("opacity", warmupBtn.colors.inactiveOpacity);
-
+      bombModeButton.addClass('active');
       newsArticles = bombshellNewsArticles;
       engine.gravity.x = VisualSettings.physics.gravity.x;
       engine.gravity.y = VisualSettings.physics.gravity.y;
 
       console.log(`Switched to Bombshell mode: ${newsArticles.length} breaking news articles`);
     } else if (mode === "warmup") {
-      teaModeButton.style("background-color", teaBtn.colors.inactive);
-      teaModeButton.style("color", teaBtn.colors.textInactive);
-      teaModeButton.style("opacity", teaBtn.colors.inactiveOpacity);
-      bombModeButton.style("background-color", bombBtn.colors.inactive);
-      bombModeButton.style("color", bombBtn.colors.textInactive);
-      bombModeButton.style("opacity", bombBtn.colors.inactiveOpacity);
-      warmupModeButton.style("background-color", warmupBtn.colors.active);
-      warmupModeButton.style("color", warmupBtn.colors.text);
-      warmupModeButton.style("opacity", warmupBtn.colors.activeOpacity);
-
+      warmupModeButton.addClass('active');
       newsArticles = warmupNewsArticles;
       engine.gravity.x = 0;
       engine.gravity.y = -0.8;

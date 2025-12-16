@@ -1,6 +1,20 @@
 @font-face {
-  font-family: "OSSwash";
-  src: url("../assets/OSSwash-Regular.woff2") format("woff2");
+  font-family: "Ohmin";
+  src: url("../assets/Ohmin-Light.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Kwangin";
+  src: url("../assets/OnulKwangin-Black.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Singlife";
+  src: url("../assets/OnulSinglife-UltraLight.woff2") format("woff2");
   font-weight: normal;
   font-style: normal;
 }
@@ -66,6 +80,75 @@ h1 {
 .button-container {
   display: flex;
   gap: 20px;
+}
+
+/* 모드 버튼 공통 스타일 */
+.mode-button {
+  padding: 12px 24px;
+  font-size: 14px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 900;
+  border-radius: 0;
+  border: 3px solid black;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+}
+
+/* Tea 모드 버튼 */
+.tea-button {
+  background-color: white;
+  color: black;
+}
+
+.tea-button.active {
+  background-color: black;
+  color: white;
+}
+
+/* Bombshell 모드 버튼 */
+.bomb-button {
+  background-color: white;
+  color: black;
+}
+
+.bomb-button.active {
+  background-color: black;
+  color: white;
+}
+
+/* Warm Up 모드 버튼 */
+.warmup-button {
+  background-color: white;
+  color: black;
+}
+
+.warmup-button.active {
+  background-color: black;
+  color: white;
+}
+
+/* 리셋 버튼 */
+.reset-button {
+  padding: 10px 20px;
+  font-size: 13px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 900;
+  border-radius: 0;
+  border: 2px solid black;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.2s ease;
+  background-color: white;
+  color: black;
+  position: absolute;
+}
+
+.reset-button:hover {
+  background-color: black;
+  color: white;
 }
 
 main {
