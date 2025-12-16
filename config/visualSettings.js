@@ -66,8 +66,8 @@ const VisualSettings = {
     // 컵 설정
     cup: {
       imageFile: "assets/cup.png",
-      sizeMin: 80,
-      sizeMax: 200,
+      sizeMin: 50,
+      sizeMax: 120,
       tiltAngle: 2,
     },
 
@@ -84,9 +84,9 @@ const VisualSettings = {
     // 폭탄 설정
     bomb: {
       imageFile: "assets/bomb.png",
-      sizeDefault: 90,
-      handSizeMin: 75,
-      handSizeMax: 150,
+      sizeDefault: 120,
+      handSizeMin: 100,
+      handSizeMax: 200,
 
       // 물리 속성
       gravity: 0.5,
