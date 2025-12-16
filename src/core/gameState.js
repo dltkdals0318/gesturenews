@@ -36,10 +36,28 @@ const GameState = {
    * 뉴스 로드 완료 체크
    */
   checkNewsLoadComplete() {
-    if (teaNewsArticles.length > 0 && bombshellNewsArticles.length > 0 && warmupNewsArticles.length > 0) {
+    // 모든 배열이 정의되어 있는지 확인 (빈 배열이어도 OK)
+    if (teaNewsArticles !== undefined &&
+        bombshellNewsArticles !== undefined &&
+        warmupNewsArticles !== undefined) {
+
+      // 빈 배열인 경우 폴백 데이터 추가
+      if (teaNewsArticles.length === 0) {
+        teaNewsArticles = NewsService.getFallbackArticles('tea');
+        console.log("Using fallback articles for tea mode");
+      }
+      if (bombshellNewsArticles.length === 0) {
+        bombshellNewsArticles = NewsService.getFallbackArticles('bombshell');
+        console.log("Using fallback articles for bombshell mode");
+      }
+      if (warmupNewsArticles.length === 0) {
+        warmupNewsArticles = NewsService.getFallbackArticles('warmup');
+        console.log("Using fallback articles for warmup mode");
+      }
+
       isNewsLoaded = true;
       newsArticles = teaNewsArticles;
-      console.log("All news loaded successfully!");
+      console.log(`All news loaded! Tea: ${teaNewsArticles.length}, Bombshell: ${bombshellNewsArticles.length}, Warmup: ${warmupNewsArticles.length}`);
     }
   }
 };

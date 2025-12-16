@@ -72,32 +72,60 @@ function preload() {
 
 // Load News Data
 async function loadNewsData() {
-  const teaQueries = NewsFilters.getRandomQueries("tea", 3);
-  const teaConfig = NewsFilters.tea;
-  teaNewsArticles = await NewsService.loadNewsForMode(
-    "tea",
-    teaQueries,
-    teaConfig
-  );
-  GameState.checkNewsLoadComplete();
+  // 먼저 폴백 데이터로 초기화하여 즉시 사용 가능하도록 함
+  teaNewsArticles = NewsService.getFallbackArticles("tea");
+  bombshellNewsArticles = NewsService.getFallbackArticles("bombshell");
+  warmupNewsArticles = NewsService.getFallbackArticles("warmup");
+  isNewsLoaded = true;
+  newsArticles = teaNewsArticles;
+  console.log("Fallback articles loaded, fetching real articles...");
 
-  const bombQueries = NewsFilters.getRandomQueries("bombshell", 3);
-  const bombConfig = NewsFilters.bombshell;
-  bombshellNewsArticles = await NewsService.loadNewsForMode(
-    "bombshell",
-    bombQueries,
-    bombConfig
-  );
-  GameState.checkNewsLoadComplete();
+  // 실제 뉴스 데이터를 비동기로 로드
+  try {
+    const teaQueries = NewsFilters.getRandomQueries("tea", 3);
+    const teaConfig = NewsFilters.tea;
+    const teaResults = await NewsService.loadNewsForMode(
+      "tea",
+      teaQueries,
+      teaConfig
+    );
+    if (teaResults.length > 0) {
+      teaNewsArticles = teaResults;
+      if (currentMode === "tea") newsArticles = teaNewsArticles;
+      console.log(`Tea articles loaded: ${teaResults.length}`);
+    }
 
-  const warmupQueries = NewsFilters.getRandomQueries("warmup", 3);
-  const warmupConfig = NewsFilters.warmup;
-  warmupNewsArticles = await NewsService.loadNewsForMode(
-    "warmup",
-    warmupQueries,
-    warmupConfig
-  );
-  GameState.checkNewsLoadComplete();
+    const bombQueries = NewsFilters.getRandomQueries("bombshell", 3);
+    const bombConfig = NewsFilters.bombshell;
+    const bombResults = await NewsService.loadNewsForMode(
+      "bombshell",
+      bombQueries,
+      bombConfig
+    );
+    if (bombResults.length > 0) {
+      bombshellNewsArticles = bombResults;
+      if (currentMode === "bombshell") newsArticles = bombshellNewsArticles;
+      console.log(`Bombshell articles loaded: ${bombResults.length}`);
+    }
+
+    const warmupQueries = NewsFilters.getRandomQueries("warmup", 3);
+    const warmupConfig = NewsFilters.warmup;
+    const warmupResults = await NewsService.loadNewsForMode(
+      "warmup",
+      warmupQueries,
+      warmupConfig
+    );
+    if (warmupResults.length > 0) {
+      warmupNewsArticles = warmupResults;
+      if (currentMode === "warmup") newsArticles = warmupNewsArticles;
+      console.log(`Warmup articles loaded: ${warmupResults.length}`);
+    }
+
+    console.log("All real articles loaded successfully!");
+  } catch (error) {
+    console.error("Error loading news articles:", error);
+    // 폴백 데이터가 이미 설정되어 있으므로 계속 진행
+  }
 }
 
 // Setup
@@ -409,6 +437,8 @@ function drawCup(x, y, size, rotationAngle) {
     const cupAspectRatio = 1270 / 605;
     const cupWidth = size * cupAspectRatio;
     const cupHeight = size;
+    // 좌우 반전
+    scale(-1, 1);
     image(cupImage, 0, 0, cupWidth, cupHeight);
   } else {
     let scale = size / 50;
