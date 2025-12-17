@@ -1,30 +1,27 @@
 /**
- * 시각적 디자인 설정
- * 모든 비주얼 요소를 중앙에서 관리
+ * visualSettings
  */
 
 const VisualSettings = {
   /**
-   * 캔버스 설정
+   * canvas settings
    */
   canvas: {
     width: 585,
     height: 480,
-    backgroundColor: "#e8e8e8", // 신문 스타일 회색 배경
+    backgroundColor: "#e8e8e8",
   },
 
   /**
-   * Tea 모드 설정
+   * Tea Mode Settings
    */
   tea: {
-    // 파티클 설정
     particle: {
       textSize: 19,
-      font: "Ohmin", // Tea 모드 전용 폰트 (우아하고 클래식한 세리프 폰트)
+      font: "Ohmin",
       minWordLength: 3,
       maxWordLength: 12,
 
-      // 색상
       defaultColor: {
         r: 75,
         g: 255,
@@ -38,15 +35,13 @@ const VisualSettings = {
         alpha: 255,
       },
 
-      // 물리 속성
       physics: {
-        restitution: 0.4, // 탄성
+        restitution: 0.4,
         friction: 0.1,
         density: 0.002,
-        radius: 0.25, // textSize * wordLength * radius
+        radius: 0.25,
       },
 
-      // 초기 속도 범위
       velocity: {
         speedMin: 2,
         speedMax: 4,
@@ -56,14 +51,12 @@ const VisualSettings = {
         verticalMax: 5,
       },
 
-      // 호버 효과
       hover: {
         sizeMultiplier: 1.2,
         cursor: "pointer",
       },
     },
 
-    // 컵 설정
     cup: {
       imageFile: "assets/cup.png",
       sizeMin: 50,
@@ -71,37 +64,31 @@ const VisualSettings = {
       tiltAngle: 2,
     },
 
-    // 생성 빈도
     generation: {
-      frameInterval: 4, // 4프레임마다 1개 생성
+      frameInterval: 5,
     },
   },
 
   /**
-   * Bombshell 모드 설정
+   * Bombshell Mode Settings
    */
   bombshell: {
-    // 폭탄 설정
     bomb: {
       imageFile: "assets/bomb.png",
       sizeDefault: 120,
       handSizeMin: 100,
       handSizeMax: 200,
 
-      // 물리 속성
       gravity: 0.5,
 
-      // 드롭 조건
-      dropDistance: 150, // 손가락 사이 거리
-      respawnTime: 90, // 3초 (30fps 기준)
+      dropDistance: 150,
+      respawnTime: 90,
     },
 
-    // 폭발 파티클 설정
     explosion: {
       textSize: 19,
-      font: "Kwangin", // Bombshell 모드 전용 폰트 (강렬하고 굵은 폰트)
+      font: "Kwangin",
 
-      // 색상
       defaultColor: {
         r: 255,
         g: 0,
@@ -115,15 +102,13 @@ const VisualSettings = {
         alpha: 255,
       },
 
-      // 물리 속성
       physics: {
         restitution: 0.4,
         friction: 0.1,
         density: 0.002,
-        radius: 0.25, // textSize * wordLength * radius
+        radius: 0.25,
       },
 
-      // 초기 속도 범위
       velocity: {
         speedMin: 5,
         speedMax: 15,
@@ -134,28 +119,25 @@ const VisualSettings = {
   },
 
   /**
-   * Warm Up 모드 설정
+   * Warm Up Mode Settings
    */
   warmup: {
-    // 캠프파이어 설정
     campfire: {
       imageFile: "assets/campfire.png",
       size: 320,
       position: {
-        x: "center", // 화면 중앙
-        y: "bottom", // 화면 하단
+        x: "center",
+        y: "bottom",
       },
       offsetY: -40,
     },
 
-    // 재 파티클 설정
     particle: {
       textSize: 27,
-      font: "Singlife", // Warm Up 모드 전용 폰트 (타자기 스타일의 모노스페이스 폰트)
+      font: "Singlife",
       minWordLength: 2,
       maxWordLength: 10,
 
-      // 재 색상 (갈색 톤)
       defaultColor: {
         r: 73,
         g: 69,
@@ -169,49 +151,45 @@ const VisualSettings = {
         alpha: 255,
       },
 
-      // 물리 속성 (가벼운 재)
       physics: {
         restitution: 0.3,
         friction: 0.05,
-        density: 0.0005, // 매우 가볍게
+        density: 0.0005,
         radius: 0.25,
       },
 
-      // 초기 속도 (위로 솟아오름) - 0.25배로 더 감소
       velocity: {
         speedMin: 0.0125,
-        speedMax: 0.0375,
-        angleSpread: 0.8, // 좌우 퍼짐 증가 (연기처럼)
+        speedMax: 0.0275,
+        angleSpread: 0.8,
         upwardMin: -0.075,
         upwardMax: -0.0375,
       },
 
-      // 호버 효과
       hover: {
         sizeMultiplier: 1.3,
         cursor: "pointer",
       },
     },
 
-    // 생성 빈도
+    // generation settings
     generation: {
-      frameInterval: 18, // 18프레임마다 1개 생성 (매우 천천히)
+      frameInterval: 16,
     },
 
-    // 위로 솟아오르는 중력 - 0.25배로 더 감소
     gravity: {
       x: 0,
-      y: -0.0025, // 음수: 위로 올라가는 힘 (0.25배로 감소)
+      y: -0.0025,
     },
   },
 
   /**
-   * UI 버튼 설정
+   * UI Button Settings
    */
   ui: {
     teaButton: {
       text: "SPILL THE TEA",
-      position: { x: -220, y: -260 }, // 상대적 위치
+      position: { x: -220, y: -260 },
       style: {
         padding: "12px 24px",
         fontSize: "14px",
@@ -259,7 +237,7 @@ const VisualSettings = {
 
     warmupButton: {
       text: "WARM UP",
-      position: { x: -100, y: -220 }, // 가운데 위치
+      position: { x: -100, y: -220 },
       style: {
         padding: "12px 24px",
         fontSize: "14px",
@@ -283,7 +261,7 @@ const VisualSettings = {
 
     resetButton: {
       text: "RESET",
-      position: { x: -30, y: 310 }, // 웹캠 아래로 더 내림
+      position: { x: -30, y: 310 },
       style: {
         padding: "10px 20px",
         fontSize: "13px",
@@ -306,7 +284,7 @@ const VisualSettings = {
   },
 
   /**
-   * Matter.js 물리 엔진 설정
+   * Matter.js Engine Settings
    */
   physics: {
     gravity: {
@@ -320,10 +298,10 @@ const VisualSettings = {
   },
 
   /**
-   * MediaPipe 손 인식 설정
+   * MediaPipe Hand Tracking Settings
    */
   handTracking: {
-    maxNumHands: 2, // Warm Up 모드를 위해 2개 손 인식
+    maxNumHands: 2,
     modelComplexity: 1,
     minDetectionConfidence: 0.5,
     minTrackingConfidence: 0.5,
@@ -334,12 +312,10 @@ const VisualSettings = {
   },
 };
 
-// 전역으로 사용 가능하도록 설정
 if (typeof window !== "undefined") {
   window.VisualSettings = VisualSettings;
 }
 
-// Node.js 환경에서도 사용 가능
 if (typeof module !== "undefined" && module.exports) {
   module.exports = VisualSettings;
 }
