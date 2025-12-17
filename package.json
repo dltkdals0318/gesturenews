@@ -1,7 +1,7 @@
 {
-  "name": "spill-the-tea",
+  "name": "gesture-news",
   "version": "1.0.0",
-  "description": "Interactive news visualization with hand gestures",
+  "description": "손 제스처로 즐기는 인터랙티브 뉴스 시각화 - MediaPipe, p5.js, Matter.js를 활용한 세 가지 뉴스 모드(연예계 가십, 속보, 일상)",
   "main": "api/server.js",
   "scripts": {
     "start": "node api/server.js",
@@ -14,11 +14,15 @@
     "node-fetch": "^2.7.0"
   },
   "keywords": [
-    "interactive",
-    "news",
-    "visualization",
+    "gesture-news",
+    "interactive-news",
     "hand-tracking",
-    "p5js"
+    "mediapipe",
+    "p5js",
+    "matter-js",
+    "news-visualization",
+    "korean-news",
+    "naver-api"
   ],
   "author": "",
   "license": "MIT"
