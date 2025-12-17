@@ -1,15 +1,14 @@
 /**
- * 통합 파티클 시스템
- * Tea와 Bomb 파티클을 관리
+ * Particle styles
  */
 
 class TeaParticle {
   constructor(x, y, angle, newsData, settings) {
     this.newsData = newsData;
 
-    // 뉴스 제목에서 단어 추출
     if (newsData && newsData.title) {
-      let words = newsData.title.split(" ")
+      let words = newsData.title
+        .split(" ")
         .filter((w) => w.length > settings.particle.minWordLength);
 
       if (words.length > 0) {
@@ -18,7 +17,6 @@ class TeaParticle {
         this.text = "tea";
       }
 
-      // 너무 긴 단어는 자르기
       if (this.text.length > settings.particle.maxWordLength) {
         this.text = this.text.substring(0, settings.particle.maxWordLength);
       }
@@ -29,10 +27,10 @@ class TeaParticle {
     this.size = settings.particle.textSize;
     this.alpha = 255;
 
-    // 텍스트 크기에 맞는 반지름 계산
-    this.radius = this.text.length * this.size * settings.particle.physics.radius;
+    this.radius =
+      this.text.length * this.size * settings.particle.physics.radius;
 
-    // Matter.js body 생성
+    // Matter.js body
     this.body = Bodies.circle(x, y, this.radius, {
       restitution: settings.particle.physics.restitution,
       friction: settings.particle.physics.friction,
@@ -40,12 +38,12 @@ class TeaParticle {
       label: "teaParticle",
     });
 
-    // 초기 속도 설정
     const vel = settings.particle.velocity;
     let speed = random(vel.speedMin, vel.speedMax);
     let vx = cos(angle + random(vel.angleMin, vel.angleMax)) * speed;
-    let vy = sin(angle + random(vel.angleMin, vel.angleMax)) * speed +
-             random(vel.verticalMin, vel.verticalMax);
+    let vy =
+      sin(angle + random(vel.angleMin, vel.angleMax)) * speed +
+      random(vel.verticalMin, vel.verticalMax);
 
     Body.setVelocity(this.body, { x: vx, y: vy });
     Composite.add(engine.world, this.body);
@@ -77,17 +75,27 @@ class TeaParticle {
 
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
-    textFont(this.settings.particle.font); // 모드별 폰트 적용
+    textFont(this.settings.particle.font);
 
     let currentSize = this.size;
     const colors = this.settings.particle;
 
     if (this.isHovered) {
-      fill(colors.hoverColor.r, colors.hoverColor.g, colors.hoverColor.b, this.alpha);
+      fill(
+        colors.hoverColor.r,
+        colors.hoverColor.g,
+        colors.hoverColor.b,
+        this.alpha
+      );
       currentSize = this.size * this.settings.particle.hover.sizeMultiplier;
       cursor(HAND);
     } else {
-      fill(colors.defaultColor.r, colors.defaultColor.g, colors.defaultColor.b, this.alpha);
+      fill(
+        colors.defaultColor.r,
+        colors.defaultColor.g,
+        colors.defaultColor.b,
+        this.alpha
+      );
     }
 
     textSize(currentSize);
@@ -121,14 +129,13 @@ class TeaParticle {
 }
 
 /**
- * Bomb 파티클 생성 함수
+ * Bomb particle functions
  */
 function createBomb(x, y, newsData) {
   let textChunks = [];
   if (newsData && newsData.title) {
-    // 제목을 3-5개 단어 단위로 묶어서 분리
     let words = newsData.title.split(/\s+/).filter((w) => w.length > 0);
-    let chunkSize = Math.ceil(words.length / random(3, 5)); // 3-5개 덩어리로
+    let chunkSize = Math.ceil(words.length / random(3, 5));
 
     for (let i = 0; i < words.length; i += chunkSize) {
       let chunk = words.slice(i, i + chunkSize).join(" ");
@@ -150,7 +157,7 @@ function createBomb(x, y, newsData) {
     exploded: false,
     explosionParticles: [],
     done: false,
-    words: textChunks
+    words: textChunks,
   };
 }
 
@@ -173,7 +180,9 @@ function explodeBomb(bomb) {
     let angle = random(TWO_PI);
     let speed = random(settings.velocity.speedMin, settings.velocity.speedMax);
     let vx = cos(angle) * speed;
-    let vy = sin(angle) * speed - random(settings.velocity.upwardMin, settings.velocity.upwardMax);
+    let vy =
+      sin(angle) * speed -
+      random(settings.velocity.upwardMin, settings.velocity.upwardMax);
 
     let textSize = settings.textSize;
     let radius = word.length * textSize * settings.physics.radius;
@@ -194,7 +203,7 @@ function explodeBomb(bomb) {
       alpha: 255,
       size: textSize,
       newsUrl: bomb.newsData.url,
-      radius: radius
+      radius: radius,
     });
   }
 }
@@ -207,7 +216,6 @@ function displayBomb(bomb) {
 
     if (bombImage && bombImage.width > 0) {
       imageMode(CENTER);
-      // Bomb 이미지 비율: 1258 x 1226 (약 1.03:1)
       const bombAspectRatio = 1258 / 1226;
       const bombWidth = bomb.size * bombAspectRatio;
       const bombHeight = bomb.size;
@@ -241,12 +249,22 @@ function displayBomb(bomb) {
 
       textAlign(CENTER, CENTER);
       textStyle(BOLD);
-      textFont(VisualSettings.bombshell.explosion.font); // Bombshell 모드 폰트 적용
+      textFont(VisualSettings.bombshell.explosion.font);
 
       if (p.isHovered) {
-        fill(colors.hoverColor.r, colors.hoverColor.g, colors.hoverColor.b, 255);
+        fill(
+          colors.hoverColor.r,
+          colors.hoverColor.g,
+          colors.hoverColor.b,
+          255
+        );
       } else {
-        fill(colors.defaultColor.r, colors.defaultColor.g, colors.defaultColor.b, 255);
+        fill(
+          colors.defaultColor.r,
+          colors.defaultColor.g,
+          colors.defaultColor.b,
+          255
+        );
       }
       noStroke();
       textSize(p.size);
@@ -293,16 +311,15 @@ function openBombNews(bomb) {
 }
 
 /**
- * Warm Up 파티클 클래스
- * 캠프파이어에서 위로 솟아오르는 재 파티클
+ * Warm Up Particle
  */
 class WarmUpParticle {
   constructor(x, y, newsData, settings) {
     this.newsData = newsData;
 
-    // 뉴스 제목에서 단어 추출
     if (newsData && newsData.title) {
-      let words = newsData.title.split(" ")
+      let words = newsData.title
+        .split(" ")
         .filter((w) => w.length > settings.particle.minWordLength);
 
       if (words.length > 0) {
@@ -311,7 +328,6 @@ class WarmUpParticle {
         this.text = "ash";
       }
 
-      // 너무 긴 단어는 자르기
       if (this.text.length > settings.particle.maxWordLength) {
         this.text = this.text.substring(0, settings.particle.maxWordLength);
       }
@@ -322,10 +338,10 @@ class WarmUpParticle {
     this.size = settings.particle.textSize;
     this.alpha = 255;
 
-    // 텍스트 크기에 맞는 반지름 계산
-    this.radius = this.text.length * this.size * settings.particle.physics.radius;
+    this.radius =
+      this.text.length * this.size * settings.particle.physics.radius;
 
-    // Matter.js body 생성
+    // Matter.js body
     this.body = Bodies.circle(x, y, this.radius, {
       restitution: settings.particle.physics.restitution,
       friction: settings.particle.physics.friction,
@@ -333,12 +349,11 @@ class WarmUpParticle {
       label: "warmupParticle",
     });
 
-    // 초기 속도 설정 (위로 솟아오름) - 더 다양한 방향
     const vel = settings.particle.velocity;
     let speed = random(vel.speedMin, vel.speedMax);
     let angle = -PI / 2 + random(-vel.angleSpread * 3, vel.angleSpread * 3); // 각도 범위 3배 증가
-    let vx = cos(angle) * speed * random(0.5, 1.5); // 좌우 속도 랜덤 증가
-    let vy = random(vel.upwardMin, vel.upwardMax); // 음수: 위로
+    let vx = cos(angle) * speed * random(0.5, 1.5);
+    let vy = random(vel.upwardMin, vel.upwardMax);
 
     Body.setVelocity(this.body, { x: vx, y: vy });
     Composite.add(engine.world, this.body);
@@ -349,8 +364,6 @@ class WarmUpParticle {
   }
 
   update() {
-    // 중력이 반대로 설정되어 있으므로 추가 힘 적용 불필요
-    // Tea 모드처럼 안정적으로 올라가기
     return true;
   }
 
@@ -372,17 +385,27 @@ class WarmUpParticle {
 
     textAlign(CENTER, CENTER);
     textStyle(BOLD);
-    textFont(this.settings.particle.font); // Warm Up 모드 폰트 적용
+    textFont(this.settings.particle.font);
 
     let currentSize = this.size;
     const colors = this.settings.particle;
 
     if (this.isHovered) {
-      fill(colors.hoverColor.r, colors.hoverColor.g, colors.hoverColor.b, this.alpha);
+      fill(
+        colors.hoverColor.r,
+        colors.hoverColor.g,
+        colors.hoverColor.b,
+        this.alpha
+      );
       currentSize = this.size * this.settings.particle.hover.sizeMultiplier;
       cursor(HAND);
     } else {
-      fill(colors.defaultColor.r, colors.defaultColor.g, colors.defaultColor.b, this.alpha);
+      fill(
+        colors.defaultColor.r,
+        colors.defaultColor.g,
+        colors.defaultColor.b,
+        this.alpha
+      );
     }
 
     textSize(currentSize);
