@@ -27,7 +27,10 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #2a2a2a;
+  background-image: url("../assets/table.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   overflow: hidden;
   font-family: "Times New Roman", Times, serif;
   touch-action: none;
@@ -49,7 +52,7 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  box-shadow: 7px 8px 10px black;
+  box-shadow: 7px 8px 10px rgb(25, 25, 25);
 }
 
 /* 상단 컨테이너 */
