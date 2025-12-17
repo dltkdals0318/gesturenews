@@ -41,7 +41,6 @@ body {
   min-height: 100vh;
 }
 
-/* 메인 컨테이너 */
 .main-container {
   background-color: #e8e8e8;
   width: 100%;
@@ -55,7 +54,6 @@ body {
   box-shadow: 7px 8px 10px rgb(25, 25, 25);
 }
 
-/* 상단 컨테이너 */
 .top-section {
   position: absolute;
   top: 10px;
@@ -68,7 +66,6 @@ body {
   z-index: 1000;
 }
 
-/* 신문 헤더 스타일 */
 header {
   text-align: center;
   background: white;
@@ -98,13 +95,11 @@ h1 {
   color: #333;
 }
 
-/* 버튼 컨테이너 */
 .button-container {
   display: flex;
   gap: 20px;
 }
 
-/* 모드 버튼 공통 스타일 */
 .mode-button {
   padding: 12px 24px;
   font-size: 14px;
@@ -118,7 +113,6 @@ h1 {
   transition: all 0.2s ease;
 }
 
-/* Tea 모드 버튼 */
 .tea-button {
   background-color: white;
   color: black;
@@ -135,7 +129,6 @@ h1 {
   color: white;
 }
 
-/* Bombshell 모드 버튼 */
 .bomb-button {
   background-color: white;
   color: black;
@@ -152,7 +145,6 @@ h1 {
   color: white;
 }
 
-/* Warm Up 모드 버튼 */
 .warmup-button {
   background-color: white;
   color: black;
@@ -172,7 +164,6 @@ h1 {
   color: white;
 }
 
-/* 리셋 버튼 컨테이너 */
 .reset-container {
   position: absolute;
   bottom: 50px;
@@ -184,7 +175,6 @@ h1 {
   z-index: 1000;
 }
 
-/* 리셋 버튼 */
 .reset-button {
   padding: 10px 20px;
   margin-bottom: -20px;

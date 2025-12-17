@@ -98,7 +98,7 @@
           "dateline"
         ).textContent = `SEOUL, ${dayName}, ${day} ${monthName} ${year}`;
 
-        // Gesture News 제목 색상 변경 애니메이션
+        // Gesture News title animation
         const title = document.querySelector("h1");
         const colors = [
           "rgb(75, 255, 0)",
@@ -111,7 +111,7 @@
         setInterval(() => {
           colorIndex = (colorIndex + 1) % colors.length;
           title.style.color = colors[colorIndex];
-        }, 1500); // 1.5초마다 색상 변경
+        }, 1000);
       </script>
       <main></main>
       <div class="reset-container" id="resetContainer"></div>

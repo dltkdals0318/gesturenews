@@ -72,7 +72,6 @@ function preload() {
 
 // Load News Data
 async function loadNewsData() {
-  // 먼저 폴백 데이터로 초기화하여 즉시 사용 가능하도록 함
   teaNewsArticles = NewsService.getFallbackArticles("tea");
   bombshellNewsArticles = NewsService.getFallbackArticles("bombshell");
   warmupNewsArticles = NewsService.getFallbackArticles("warmup");
@@ -80,7 +79,6 @@ async function loadNewsData() {
   newsArticles = teaNewsArticles;
   console.log("Fallback articles loaded, fetching real articles...");
 
-  // 실제 뉴스 데이터를 비동기로 로드
   try {
     const teaQueries = NewsFilters.getRandomQueries("tea", 3);
     const teaConfig = NewsFilters.tea;
@@ -124,14 +122,12 @@ async function loadNewsData() {
     console.log("All real articles loaded successfully!");
   } catch (error) {
     console.error("Error loading news articles:", error);
-    // 폴백 데이터가 이미 설정되어 있으므로 계속 진행
   }
 }
 
 // Setup
 function setup() {
   createCanvas(VisualSettings.canvas.width, VisualSettings.canvas.height);
-  // 각 모드별로 다른 폰트를 사용하므로 기본 폰트 설정 제거
 
   engine = Engine.create();
   engine.gravity.x = VisualSettings.physics.gravity.x;
@@ -433,11 +429,9 @@ function drawCup(x, y, size, rotationAngle) {
 
   if (cupImage && cupImage.width > 0) {
     imageMode(CENTER);
-    // Cup 이미지 비율: 1270 x 605 (약 2.1:1)
     const cupAspectRatio = 1270 / 605;
     const cupWidth = size * cupAspectRatio;
     const cupHeight = size;
-    // 좌우 반전
     scale(-1, 1);
     image(cupImage, 0, 0, cupWidth, cupHeight);
   } else {
@@ -483,11 +477,9 @@ function drawBomb(x, y, size) {
 
   if (bombImage && bombImage.width > 0) {
     imageMode(CENTER);
-    // Bomb 이미지 비율: 1258 x 1226 (약 1.03:1)
     const bombAspectRatio = 1258 / 1226;
     const bombWidth = bombSize * bombAspectRatio;
     const bombHeight = bombSize;
-    // 좌우 반전하여 손에 있을 때와 떨어질 때 방향 일치
     scale(-1, 1);
     image(bombImage, 0, 0, bombWidth, bombHeight);
   } else {
