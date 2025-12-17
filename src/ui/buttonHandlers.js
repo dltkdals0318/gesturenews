@@ -1,80 +1,85 @@
 /**
- * UI 버튼 및 이벤트 핸들러
+ * UI button / event handlers
  */
 
 const UIHandlers = {
   /**
-   * 모드 버튼들 생성
+   * Mode buttons
    */
   createModeButtons() {
-    // Tea 버튼
-    teaModeButton = createButton('SPILL THE TEA');
-    teaModeButton.parent('modeButtons');
-    teaModeButton.class('mode-button tea-button active');
+    // Tea
+    teaModeButton = createButton("SPILL THE TEA");
+    teaModeButton.parent("modeButtons");
+    teaModeButton.class("mode-button tea-button active");
     teaModeButton.mousePressed(() => this.switchMode("tea"));
 
-    // Bombshell 버튼
-    bombModeButton = createButton('DROP A BOMBSHELL');
-    bombModeButton.parent('modeButtons');
-    bombModeButton.class('mode-button bomb-button');
+    // Bombshell
+    bombModeButton = createButton("DROP A BOMBSHELL");
+    bombModeButton.parent("modeButtons");
+    bombModeButton.class("mode-button bomb-button");
     bombModeButton.mousePressed(() => this.switchMode("bombshell"));
 
-    // Warm Up 버튼
-    warmupModeButton = createButton('WARM UP');
-    warmupModeButton.parent('modeButtons');
-    warmupModeButton.class('mode-button warmup-button');
+    // Warm Up
+    warmupModeButton = createButton("WARM UP");
+    warmupModeButton.parent("modeButtons");
+    warmupModeButton.class("mode-button warmup-button");
     warmupModeButton.mousePressed(() => this.switchMode("warmup"));
   },
 
   /**
-   * 리셋 버튼 생성
+   * reset button
    */
   createResetButton() {
-    resetButton = createButton('RESET');
-    resetButton.parent('resetContainer');
-    resetButton.class('reset-button');
+    resetButton = createButton("RESET");
+    resetButton.parent("resetContainer");
+    resetButton.class("reset-button");
     resetButton.mousePressed(GameState.resetAll);
   },
 
   /**
-   * 모드 전환
+   * Mode transition
    */
   switchMode(mode) {
     currentMode = mode;
 
-    // 모든 버튼에서 active 클래스 제거
-    teaModeButton.removeClass('active');
-    bombModeButton.removeClass('active');
-    warmupModeButton.removeClass('active');
+    teaModeButton.removeClass("active");
+    bombModeButton.removeClass("active");
+    warmupModeButton.removeClass("active");
 
     if (mode === "tea") {
-      teaModeButton.addClass('active');
+      teaModeButton.addClass("active");
       newsArticles = teaNewsArticles;
       engine.gravity.x = VisualSettings.physics.gravity.x;
       engine.gravity.y = VisualSettings.physics.gravity.y;
 
-      console.log(`Switched to Tea mode: ${newsArticles.length} celebrity articles`);
+      console.log(
+        `Switched to Tea mode: ${newsArticles.length} celebrity articles`
+      );
     } else if (mode === "bombshell") {
-      bombModeButton.addClass('active');
+      bombModeButton.addClass("active");
       newsArticles = bombshellNewsArticles;
       engine.gravity.x = VisualSettings.physics.gravity.x;
       engine.gravity.y = VisualSettings.physics.gravity.y;
 
-      console.log(`Switched to Bombshell mode: ${newsArticles.length} breaking news articles`);
+      console.log(
+        `Switched to Bombshell mode: ${newsArticles.length} breaking news articles`
+      );
     } else if (mode === "warmup") {
-      warmupModeButton.addClass('active');
+      warmupModeButton.addClass("active");
       newsArticles = warmupNewsArticles;
       engine.gravity.x = 0;
       engine.gravity.y = -0.8;
 
-      console.log(`Switched to Warm Up mode: ${newsArticles.length} lifestyle articles`);
+      console.log(
+        `Switched to Warm Up mode: ${newsArticles.length} lifestyle articles`
+      );
     }
 
     GameState.resetAll();
   },
 
   /**
-   * 클릭/터치 핸들러
+   * Click handler for particles
    */
   handleClick(x, y) {
     let clickedParticle = false;
@@ -118,9 +123,9 @@ const UIHandlers = {
         }
       }
     }
-  }
+  },
 };
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.UIHandlers = UIHandlers;
 }

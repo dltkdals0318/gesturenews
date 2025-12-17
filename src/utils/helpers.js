@@ -1,10 +1,10 @@
 /**
- * 유틸리티 함수 모음
+ * Utility functions
  */
 
 const Utils = {
   /**
-   * HTML 엔티티를 디코딩
+   * HTML entities decoder
    */
   decodeHTMLEntities(text) {
     const textarea = document.createElement("textarea");
@@ -13,16 +13,16 @@ const Utils = {
   },
 
   /**
-   * 버튼 스타일 적용 헬퍼
+   * Button style apply
    */
   applyButtonStyle(button, styleObj) {
     Object.keys(styleObj).forEach((key) => {
       const cssKey = key.replace(/([A-Z])/g, "-$1").toLowerCase();
       button.style(cssKey, styleObj[key]);
     });
-  }
+  },
 };
 
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   window.Utils = Utils;
 }
