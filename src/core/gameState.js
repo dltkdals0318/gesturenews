@@ -1,10 +1,10 @@
 /**
- * 게임 상태 관리
+ * Game State Management
  */
 
 const GameState = {
   /**
-   * 모든 파티클 리셋
+   * Particle Reset
    */
   resetAll() {
     for (let particle of teaParticles) {
@@ -33,15 +33,13 @@ const GameState = {
   },
 
   /**
-   * 뉴스 로드 완료 체크
+   * News Load
    */
   checkNewsLoadComplete() {
-    // 모든 배열이 정의되어 있는지 확인 (빈 배열이어도 OK)
     if (teaNewsArticles !== undefined &&
         bombshellNewsArticles !== undefined &&
         warmupNewsArticles !== undefined) {
 
-      // 빈 배열인 경우 폴백 데이터 추가
       if (teaNewsArticles.length === 0) {
         teaNewsArticles = NewsService.getFallbackArticles('tea');
         console.log("Using fallback articles for tea mode");
