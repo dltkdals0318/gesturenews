@@ -27,7 +27,7 @@
 body {
   padding: 0;
   margin: 0;
-  background-image: url("../assets/table.jpg");
+  background-color: #707070;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
